@@ -1,93 +1,73 @@
-# 📰 Fake News Detector
+# 📰 TruthLens — Fake News Detection
 
-An end-to-end Machine Learning web app that classifies news article text as **Fake** or **Real** using TF-IDF features and Logistic Regression. The app is built with Python and Streamlit.
+An end-to-end Machine Learning project that classifies news articles as Fake or Real using Natural Language Processing (NLP) and supervised learning.
 
 ## 🚀 Live Demo
 
-**Try the app:** https://fake-news-detector-h9xpbuc4wfp2qb5rxdpqmp.streamlit.app/
+**Frontend:** [Open TruthLens](https://intel-scan.lovable.app/)
 
-Paste a news article into the app to see the model's classification and estimated class probabilities.
+**Backend API:** [https://fake-news-detector-b7pz.onrender.com](https://fake-news-detector-b7pz.onrender.com)
+
+**API Documentation:** [https://fake-news-detector-b7pz.onrender.com/docs](https://fake-news-detector-b7pz.onrender.com/docs)
 
 ## ✨ Features
 
-- Classifies article text as **FAKE** or **REAL**
-- Converts text into numerical features using TF-IDF
-- Uses a trained Logistic Regression model for predictions
-- Displays estimated fake/real class probabilities
-- Provides an interactive Streamlit interface
+- News article classification using a trained ML model.
+- TF-IDF text vectorization.
+- Logistic Regression prediction.
+- Estimated probabilities for Fake and Real classes.
+- Interactive interface with loading states and error handling.
+- REST API built with FastAPI.
+- Deployed frontend and Python backend.
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python
-- **Data handling:** Pandas, NumPy
-- **Machine Learning:** Scikit-learn
-- **NLP / Feature extraction:** TF-IDF Vectorizer
-- **Models compared:** Logistic Regression, Multinomial Naive Bayes
-- **Web app:** Streamlit
-- **Deployment:** Streamlit Community Cloud
+**Frontend:** Lovable, React
 
-## 🧠 Workflow
+**Backend:** Python, FastAPI, Uvicorn
 
-1. Load the Fake and Real news datasets.
-2. Assign labels (`0` = Fake, `1` = Real) and combine the datasets.
-3. Remove rows with missing or empty article text.
-4. Split the data into training and test sets using stratification.
-5. Fit TF-IDF on the training text and transform the test text.
-6. Train and evaluate Logistic Regression and Multinomial Naive Bayes.
-7. Save the trained model and vectorizer, then load them in the Streamlit app.
+**Machine Learning:** Scikit-learn, TF-IDF, Logistic Regression, Multinomial Naive Bayes
 
-## 📊 Model Results
+**Data Processing:** Pandas, NumPy
 
-| Model | Test accuracy |
+**Deployment:** Lovable, Render
+
+## ⚙️ How It Works
+
+1. The user enters a news article in the frontend.
+2. The frontend sends the article to the FastAPI `/predict` endpoint.
+3. The saved TF-IDF vectorizer converts the article into numerical features.
+4. The trained Logistic Regression model predicts the class.
+5. The backend returns the prediction and estimated class probabilities.
+6. The frontend displays the result.
+
+## 📊 Model Evaluation
+
+| Model | Test Accuracy |
 |---|---:|
 | Logistic Regression | 98.62% |
 | Multinomial Naive Bayes | 93.13% |
 
-These results are from the project's held-out test split. They should not be interpreted as real-world fact-checking accuracy; dataset patterns, source clues, or similar articles may affect performance.
+These results were measured on a held-out test split of the dataset. They should not be interpreted as real-world fact-checking accuracy.
 
-## 📂 Project Files
+## 🧠 Dataset and Methodology
 
-```text
-fake-news-detector/
-├── app.py                     # Streamlit application
-├── fake_news_model.pkl        # Trained Logistic Regression model
-├── tfidf_vectorizer.pkl       # Fitted TF-IDF vectorizer
-├── requirements.txt           # Python dependencies
-└── README.md                  # Project documentation
-```
+The project uses the Fake and Real News Dataset. The dataset is combined, cleaned, and split into training and testing sets. TF-IDF features are then used to train and evaluate classification models.
 
-## 💻 Run Locally
+## ▶️ Run the Backend Locally
 
-1. Clone this repository and open its folder:
+Install the dependencies:
 
-   ```bash
-   git clone <your-github-repository-url>
-   cd fake-news-detector
-   ```
+`pip install -r requirements.txt`
 
-2. (Optional) Create and activate a virtual environment.
+Start the API from the directory containing `api.py` and the saved model files:
 
-3. Install dependencies:
+`uvicorn api:app --reload`
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+Open the interactive API documentation at:
 
-4. Start the app:
+`http://127.0.0.1:8000/docs`
 
-   ```bash
-   streamlit run app.py
-   ```
+## ⚠️ Disclaimer
 
-Keep `fake_news_model.pkl` and `tfidf_vectorizer.pkl` in the same folder as `app.py`.
-
-## ⚠️ Limitations
-
-This project performs text classification; it does **not** independently verify claims against trusted news sources or fact-checking databases. A prediction and its probability are model estimates, and the model can be confidently wrong—especially for short statements, unfamiliar topics, or text unlike its training data. Please verify important claims using reliable independent sources.
-
-## 👩‍💻 Author
-
-Add your name and links here:
-
-- **GitHub:** <your-github-profile-url>
-- **LinkedIn:** <your-linkedin-profile-url>
+TruthLens performs machine-learning-based text classification. It does not independently verify claims against trusted sources, and its predictions may be incorrect.
