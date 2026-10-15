@@ -4,7 +4,7 @@ An end-to-end Machine Learning web app that classifies news article text as **Fa
 
 ## 🚀 Live Demo
 
-**Try the app:** https://fake-news-detector-cpwuhaq3jgxv2nnvzrkrwl.streamlit.app/
+**Try the app:** https://fake-news-detector-h9xpbuc4wfp2qb5rxdpqmp.streamlit.app/
 
 Paste a news article into the app to see the model's classification and estimated class probabilities.
 
